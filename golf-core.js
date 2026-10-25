@@ -1,0 +1,6 @@
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.FairwayCore=factory()})(typeof globalThis!=='undefined'?globalThis:this,function(){
+function distance(a,b){const rad=x=>x*Math.PI/180,dlat=rad(b[0]-a[0]),dlon=rad(b[1]-a[1]),v=Math.sin(dlat/2)**2+Math.cos(rad(a[0]))*Math.cos(rad(b[0]))*Math.sin(dlon/2)**2;return 6371000*2*Math.atan2(Math.sqrt(v),Math.sqrt(Math.max(0,1-v)))}
+function score(h,i){return i===0?h.strokes:(h.others?.[i-1]??null)}
+function standings(r){let values=r.players.map(p=>({name:p,total:0,par:0,played:0,points:0,wins:0})),carry=1,tied=0;r.holes.forEach(h=>{values.forEach((v,i)=>{const s=score(h,i);if(s!==null){v.total+=s;v.par+=h.par;v.played++;v.points+=Math.max(0,Math.min(6,2+h.par-s))}});if(r.players.every((_,i)=>score(h,i)!==null)){const min=Math.min(...r.players.map((_,i)=>score(h,i))),winners=values.filter((_,i)=>score(h,i)===min);if(winners.length===1){winners[0].wins+=r.mode==='skins'?carry:1;carry=1}else{if(r.mode==='skins')carry++;tied++}}});const sorted=[...values].sort((a,b)=>r.mode==='stableford'?b.points-a.points:r.mode==='match'||r.mode==='skins'?b.wins-a.wins:(a.total-a.par)-(b.total-b.par));return {values,sorted,carry,tied}}
+return {distance,standings};
+});
