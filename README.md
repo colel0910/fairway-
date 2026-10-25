@@ -16,7 +16,11 @@ An independent, mobile-first golf companion with an 18Birdies-inspired workflow 
 
 All personal data is saved in browser local storage on the current device. No cross-device accounts, cloud sync, social network, AI swing analysis, official handicap service, or proprietary course database is included. Existing Fairway rounds, practice scores, and clubs are retained.
 
-Course discovery searches a user-selected map area through the public Private.coffee Overpass service. Availability is not guaranteed; course lookup timed out in the development environment. Users can always add courses by name and optionally set coordinates or use the visible map center. Pars, tees, and green locations must be entered by the golfer. The map is not a surveyed course database.
+The Courses screen includes a bundled OpenGolfAPI snapshot with 15,667 U.S. course entries (408 in New Jersey), name/city search, state filtering, pagination, saved favorites, and course profiles. The database is distributed as `data/courses.json.gz` under ODbL-1.0 with attribution and download links in the app. Modern browser gzip decompression is required. The app caches its compact directory with the offline shell.
+
+Available per-hole pars load from the bundled snapshot. Live OpenGolfAPI detail requests supplement course profiles with tee sets, ratings, slopes, and per-tee yardages when available; responses are cached for seven days. A verified Ramblewood White/Blue detail snapshot is bundled as a resilient example. Missing hole pars are marked for review rather than presented as verified data. Green positions are not fabricated and still require manual placement where unavailable. The directory collapses exact name/city/state duplicates and prefers the entry with the most known pars. The source also contains older details and incomplete cards; confirm course details before playing.
+
+The map explorer also filters the built-in directory within the visible map bounds, avoiding dependency on the public Overpass lookup during normal use. Existing custom courses remain available.
 
 GPS needs HTTPS and the golfer's browser permission. GPS accuracy varies, and physical on-course GPS was not verified during development. Shot distances are straight-line displacement between selected positions, not carry or ball-flight tracking. GPS stops when leaving the Play screen or hiding the app. Backups may contain coordinates from saved shots and green pins.
 
@@ -33,3 +37,8 @@ Run `node tests/core.test.cjs` for known geodesic distances, match play, incompl
 ## Map credits
 
 Leaflet 1.9.4 (BSD-2-Clause); street map tiles and course data © OpenStreetMap contributors (ODbL). Course queries are served by Private.coffee Overpass. Satellite tiles © Esri, with Esri, Maxar, Earthstar Geographics, and the GIS User Community credited on-map. External services retain their own availability and terms.
+
+
+## Real course checks
+
+Directory archive SHA256 was verified against the publisher checksum. The bundle has 15,667 unique source IDs and valid coordinates; missing pars remain null. Browser checks cover state/name filtering, a real Ramblewood profile, tee selection, saved favorites, and an 18-hole scorecard populated with par 72 and White tee yardages totaling 6,188 yards.

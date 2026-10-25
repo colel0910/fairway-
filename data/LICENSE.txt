@@ -1,0 +1,12 @@
+This database is made available under the Open Database License:
+http://opendatacommons.org/licenses/odbl/1.0/
+
+Any rights in individual contents of the database are licensed under the
+Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/
+
+Attribution: "Contains data from OpenGolfAPI (opengolfapi.org)"
+
+Source: https://github.com/opengolfapi/data
+Snapshot generated: 2026-04-20T19:48:41.793Z
+Source archive SHA256: c3b3bd4b1b3894fe5b9a6f0e84df43472f55aaad2602faeb58ef56a709db1a39
+The directory and scorecard extracts are available under ODbL-1.0. Missing pars remain null.
