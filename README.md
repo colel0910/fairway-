@@ -42,3 +42,6 @@ Leaflet 1.9.4 (BSD-2-Clause); street map tiles and course data © OpenStreetMap 
 ## Real course checks
 
 Directory archive SHA256 was verified against the publisher checksum. The bundle has 15,667 unique source IDs and valid coordinates; missing pars remain null. Browser checks cover state/name filtering, a real Ramblewood profile, tee selection, saved favorites, and an 18-hole scorecard populated with par 72 and White tee yardages totaling 6,188 yards.
+
+### Tee and green pins
+Play → Find tee & green pins loads available course coordinates and a small OpenStreetMap extract. Blue outlines mark tee boxes; lime outlines mark greens. Unique numbered hole lines provide approximate start/green endpoints, not a surveyed tee color or today’s cup position. Missing or ambiguous hole numbers are left unassigned. Select Tee box / Center / Front / Back and tap to save a correction for this course, tee and hole. Corrections override imports in future rounds on this device. Fit hole frames the current pins. Distances use the marked tee until a ball position or GPS fix is available. Coverage varies. Mapping uses OpenStreetMap (ODbL), cached seven days. Corrections are local and are not separately included in backup exports; pins already in rounds are included.

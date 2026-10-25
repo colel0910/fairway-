@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict');
+const M=require('../golf-mapping.js');
+assert.equal(M.point({lat:999,lng:0}),null);
+assert.deepEqual(M.point({type:'Point',coordinates:[-75,40]}),[40,-75]);
+assert.deepEqual(M.apiPins({green:{center:{lat:40,lng:-75}},tee_coords:{white:[39.999,-75]}},{tee_color:'white'}),{middle:[40,-75],tee:[39.999,-75]});
+assert.deepEqual(M.apiPins({green:null,tee_coords:null},null),{});
+const nodes=[[0,0],[0,4],[4,4],[4,0],[0,0],[1,1],[2,2],[1,1],[1,1.1],[1.1,1.1],[1,1]].map((p,i)=>({type:'node',id:i+1,lat:p[0],lon:p[1]}));
+const boundary={type:'way',id:1,nodes:[1,2,3,4,5],tags:{leisure:'golf_course'}};
+const hole={type:'way',id:2,nodes:[6,7],tags:{golf:'hole',ref:'1'}};
+const tee={type:'way',id:3,nodes:[8,9,10,11],tags:{golf:'tee'}};
+const data={elements:[...nodes,boundary,hole,tee]};
+assert.deepEqual(M.osmHoles(data,[2,1]),{1:{tee:[1,1],middle:[2,2]}});
+assert.equal(M.osmFeatures(data,[2,1]).length,1);
+assert.deepEqual(M.osmHoles({elements:[...data.elements,{...hole,id:4}]},[2,1]),{});
+assert.deepEqual(M.osmHoles(data,[10,10]),{});
+assert.deepEqual(M.osmHoles({elements:[...data.elements,{...boundary,id:99}]},[2,1]),{});
+console.log('Mapping tests passed: coordinates, selected tees, boundaries, missing data, ambiguous hole numbers.');
